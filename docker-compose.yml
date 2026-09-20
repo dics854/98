@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    container_name: math_tutor_bot
+    restart: always
+    volumes:
+      - ./data:/app/data
+    environment:
+      # Bot Configuration
+      BOT_TOKEN: ${BOT_TOKEN}
+      ADMIN_IDS: ${ADMIN_IDS}
+      ERROR_LOG_CHANNEL_ID: ${ERROR_LOG_CHANNEL_ID}
+      BACKUP_CHANNEL_ID: ${BACKUP_CHANNEL_ID}
+      
+      # Database
+      DB_PATH: /app/data/math_tutor.db
+      
+      # OpenAI
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+      
+      # Application
+      DEBUG: ${DEBUG:-False}
+      PYTHONPATH: /app
+    command: python main.py

@@ -1,0 +1,2 @@
+# Эта папка содержит файлы миграций Alembic
+# Миграции создаются автоматически командой: alembic revision --autogenerate -m "description"
